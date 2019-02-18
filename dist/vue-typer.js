@@ -169,7 +169,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
+$export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
@@ -355,6 +355,10 @@ var noop = function () {}
 var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
 
 module.exports = function (parentId, list, _isProduction) {
+  if (typeof window === 'undefined') {
+    return
+  }
+
   isProduction = _isProduction
 
   var styles = listToStyles(parentId, list)
